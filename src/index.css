@@ -1,0 +1,7 @@
+.contacts{
+        border-width: 1px;
+        border-style: solid;
+        border-color: grey;
+        display: flex;
+        margin: 20px;
+}

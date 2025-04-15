@@ -1,4 +1,5 @@
 //Muestra un solo contacto.
+import React from "react";
 
 export const ContactCard = (props) => {
 
