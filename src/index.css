@@ -5,3 +5,8 @@
         display: flex;
         margin: 20px;
 }
+
+.create{
+        display: flex;
+        justify-self: center;
+}
