@@ -1,4 +1,4 @@
-.contacts{
+.contacts {
         border-width: 1px;
         border-style: solid;
         border-color: grey;
@@ -6,7 +6,23 @@
         margin: 20px;
 }
 
-.create{
+.create {
         display: flex;
         justify-self: center;
+}
+
+.card {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+}
+
+.datos {
+        display: grid;
+        align-content: center;
+        width: 60%;
+}
+
+.card-img{
+        width: 25%;
 }

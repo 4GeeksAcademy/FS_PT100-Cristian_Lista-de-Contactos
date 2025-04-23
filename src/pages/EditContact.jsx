@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import ContactService from "../services/ContactServices"
+import ContactService from "../services/ContactService"
 import useGlobalReducer from "../hooks/useGlobalReducer"
 
 export const EditContact = () => {
@@ -13,20 +13,15 @@ export const EditContact = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleCancelar = e => {
-        e.preventDefault();
-        navigate('/')
-    }
-
     const handleReset = () => {
         setFormData(store.agenda.find(el => el.id == params.id))
     }
 
     const handleSubmit = async e => {
         try {
-            e.preventDefault()
-            const resp = await contactService.editContact('pepe', params.id, formData)
-            console.log(resp)
+            e.preventDeFault()
+            const resp = await ContactService.editContact('cristian', params.id, formData)
+            console.log(resp);
             navigate('/')
         } catch (error) {
             console.log(error)
@@ -38,13 +33,24 @@ export const EditContact = () => {
         <div className="container-fluid text-center">
             <h2>Edit contact</h2>
             <form className="form-control" onSubmit={handleSubmit}>
-                <input type="text" className="form-control" placeholder="name" name="name" value={formData.name} onChange={handleChange} />
-                <input type="text" className="form-control fa-solid fa-phone" placeholder="phone" name="phone" value={formData.phone} onChange={handleChange} />
-                <input type="text" className="form-control fa-solid fa-envelope" placeholder="email" name="email" value={formData.email} onChange={handleChange} />
-                <input type="text" className="form-control fa-solid fa-location-dot" placeholder="address" name="address" value={formData.address} onChange={handleChange} />
+                <div className="col-12">
+                    <label for="formGroupExampleInput" className="form-label d-flex m-1 fa-solid fa-user">Full name</label>
+                    <input type="text" className="form-control" placeholder="Full name" name="name" value={formData.name} onChange={handleChange} />
+                </div>
+                <div className="col-12">
+                    <label for="formGroupExampleInput2" className="form-label d-flex m-1 fa-solid fa-phone-flip">Phone</label>
+                    <input type="text" className="form-control" placeholder="phone" name="phone" value={formData.phone} onChange={handleChange} />
+                </div>
+                <div className="col-12">
+                    <label for="inputEmail4" className="form-label d-flex m-1 fa-solid fa-envelope">Email</label>
+                    <input type="text" className="form-control" placeholder="email" name="email" value={formData.email} onChange={handleChange} />
+                </div>
+                <div className="col-12">
+                    <label for="inputAddress" className="form-label d-flex m-1 fa-solid fa-location-dot">Address</label>
+                    <input type="text" className="form-control mb-2" placeholder="address" name="address" value={formData.address} onChange={handleChange} />
+                </div>
                 <input type="submit" className="btn btn-primary" />
-                <input type="reset" onClick={handleReset} className="btn btn-warning fa-solid fa-pen" />Modificar
-                <button onClick={handleCancelar} className="btn btn-danger fa-solid fa-trash">Cancelar</button>
+                <input type="reset" onClick={handleReset} className="btn btn-danger" />
             </form>
         </div>
     )

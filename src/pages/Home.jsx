@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import ContactServices from "../services/ContactServices.jsx";
+import ContactServices from "../services/ContactService.jsx";
 import { ContactCard } from "../components/ContactCard.jsx";
 
 export const Home = () => {
@@ -11,17 +11,17 @@ export const Home = () => {
 		try {
 			const data = await ContactServices.getAllAgendas();
 			console.log(data)
-			dispatch({ type: 'getAllAgendas', payload: data.agendas })
+			dispatch({ type: 'getAllAgendas', payload: data.contacts })
 		} catch (error) {
 			console.log(error)
 		}
 	}
 
-	const fetchGetAgendas = async (name) => {
+	const fetchGetAgendas = async (username) => {
 		try {
-			const data = await ContactServices.getAgendas(name);
+			const data = await ContactServices.getAgenda(username);
 			console.log(data)
-			dispatch({ type: 'getNameAgenda', payload: data.contacts })
+			dispatch({ type: 'getUserAgenda', payload: data.contacts })
 		} catch (error) {
 			console.log(error)
 		}
@@ -35,7 +35,7 @@ export const Home = () => {
 
 	return (
 		<div className="card_user">
-			<div className="row">
+			<div className="row  d-flex justify-content-center">
 				{store.agenda?.map(el => <ContactCard
 					key={el.id}
 					cid={el.id}
@@ -46,7 +46,6 @@ export const Home = () => {
 				/>
 				)}
 			</div>
-			<button className="create m-3" onClick={() => ContactServices.createAgenda('cristian')}>Create Contact</button>
 		</div>
 	)
 }

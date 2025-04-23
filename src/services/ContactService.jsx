@@ -1,7 +1,7 @@
-const ContactServices = {}
+const ContactService = {}
 
 //---------- GET ----------//GET ALL AGENDAS
-ContactServices.getAllAgendas = async () => {
+ContactService.getAllAgendas = async () => {
     try {
         const resp = await fetch('https://playground.4geeks.com/contact/agendas')
         const data = await resp.json()
@@ -12,7 +12,7 @@ ContactServices.getAllAgendas = async () => {
 }
 
 //---------- GET ----------//GET AGENDA
-ContactServices.getAgendas = async (slug) => {
+ContactService.getAgenda = async (slug) => {
     try {
         const resp = await fetch('https://playground.4geeks.com/contact/agendas/' + slug)
         const data = await resp.json()
@@ -23,9 +23,9 @@ ContactServices.getAgendas = async (slug) => {
 }
 
 //----- POST -----// CREATE AGENDA
-ContactServices.createAgenda = async (slug) => {
+ContactService.createAgenda = async (slug) => {
     try {
-        const resp = await fetch('https://playground.4geeks.com/contact/agendas/'+slug, {
+        const resp = await fetch('https://playground.4geeks.com/contact/agendas/'+ slug, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,30 +34,30 @@ ContactServices.createAgenda = async (slug) => {
         const data = await resp.json()
         return data
     } catch (error) {
-        console.log(error);
-
+        console.log(error)
     }
 }
 
+
 //----- POST -----// CREATE CONTACT
-ContactServices.createContact = async (contact) => {
+ContactService.createContact = async (contact) => {
     try {
         const resp = await fetch('https://playground.4geeks.com/contact/agendas/cristian/contacts', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(contact)
         })
         const data = await resp.json()
-        return ContactServices.getAgendas('cristian')
+        return ContactService.getAgenda('cristian')
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 }
 
 //----- DELETE -----// DELETE AGENDA
-ContactServices.deleteContact = async (slug, id) => {
+ContactService.deleteContact = async (slug, id) => {
     try {
         await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}` , {
              method: 'DELETE',
@@ -65,26 +65,26 @@ ContactServices.deleteContact = async (slug, id) => {
                  'Content-Type': 'application/json'
              }
          })
-         return ContactServices.getAgendas('cristian')
+         return ContactService.getAgenda('cristian')
      } catch (error) {
          console.log(error)
      }
  }
 
  //----- MODIFICAR -----// MODIFICAR AGENDA
- ContactServices.editContact = async (slug, id, formdata) => {
+ ContactService.editContact = async (slug, id, formdata) => {
     try {
-        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}` , {
+        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}}/contacts/${id}` , {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formdata)
         } )
-         return contactService.getAgenda(slug)
+         return ContactService.getAgenda(slug)
      } catch (error) {
          console.log(error)
      }
 }
 
-export default ContactServices
+export default ContactService
