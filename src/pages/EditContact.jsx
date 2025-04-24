@@ -4,6 +4,7 @@ import ContactService from "../services/ContactService"
 import useGlobalReducer from "../hooks/useGlobalReducer"
 
 export const EditContact = () => {
+
     const params = useParams()
     const { store, dispatch } = useGlobalReducer()
     const navigate = useNavigate()
@@ -34,19 +35,19 @@ export const EditContact = () => {
             <h2>Edit contact</h2>
             <form className="form-control" onSubmit={handleSubmit}>
                 <div className="col-12">
-                    <label for="formGroupExampleInput" className="form-label d-flex m-1 fa-solid fa-user">Full name</label>
+                    <label htmlFor="formGroupExampleInput" className="form-label d-flex m-1 fa-solid fa-user">Full name</label>
                     <input type="text" className="form-control" placeholder="Full name" name="name" value={formData.name} onChange={handleChange} />
                 </div>
                 <div className="col-12">
-                    <label for="formGroupExampleInput2" className="form-label d-flex m-1 fa-solid fa-phone-flip">Phone</label>
+                    <label htmlFor="formGroupExampleInput2" className="form-label d-flex m-1 fa-solid fa-phone-flip">Phone</label>
                     <input type="text" className="form-control" placeholder="phone" name="phone" value={formData.phone} onChange={handleChange} />
                 </div>
                 <div className="col-12">
-                    <label for="inputEmail4" className="form-label d-flex m-1 fa-solid fa-envelope">Email</label>
+                    <label htmlFor="inputEmail4" className="form-label d-flex m-1 fa-solid fa-envelope">Email</label>
                     <input type="text" className="form-control" placeholder="email" name="email" value={formData.email} onChange={handleChange} />
                 </div>
                 <div className="col-12">
-                    <label for="inputAddress" className="form-label d-flex m-1 fa-solid fa-location-dot">Address</label>
+                    <label htmlFor="inputAddress" className="form-label d-flex m-1 fa-solid fa-location-dot">Address</label>
                     <input type="text" className="form-control mb-2" placeholder="address" name="address" value={formData.address} onChange={handleChange} />
                 </div>
                 <input type="submit" className="btn btn-primary" />

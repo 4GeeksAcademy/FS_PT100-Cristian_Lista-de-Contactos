@@ -1,7 +1,7 @@
 export const initialStore = () => {
   return {
     message: null,
-    agendas: null,
+    agendas: [],
     todos: [
       {
         id: 1,

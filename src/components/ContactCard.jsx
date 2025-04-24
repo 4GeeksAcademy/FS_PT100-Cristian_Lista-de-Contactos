@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import ContactServices from "../services/ContactService"
+
 
 export const ContactCard = (props) => {
 
@@ -6,7 +8,7 @@ export const ContactCard = (props) => {
 
     const handleDelete = async () => {
         try {
-            const resp = await ContactService.deleteContact ('cristian', props.cid)
+            const resp = await ContactServices.deleteContact('cristian', props.cid)
             console.log(resp)
         } catch (error) {
             console.log(error);

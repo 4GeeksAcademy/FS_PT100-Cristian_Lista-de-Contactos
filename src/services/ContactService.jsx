@@ -31,8 +31,8 @@ ContactService.createAgenda = async (slug) => {
                 'Content-Type': 'application/json'
             }
         })
-        const data = await resp.json()
-        return data
+        const updatedAgenda = await ContactService.getAgenda('cristian');
+        return updatedAgenda
     } catch (error) {
         console.log(error)
     }
@@ -40,14 +40,14 @@ ContactService.createAgenda = async (slug) => {
 
 
 //----- POST -----// CREATE CONTACT
-ContactService.createContact = async (contact) => {
+ContactService.createContact = async (Contact) => {
     try {
         const resp = await fetch('https://playground.4geeks.com/contact/agendas/cristian/contacts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(contact)
+            body: JSON.stringify(Contact)
         })
         const data = await resp.json()
         return ContactService.getAgenda('cristian')
@@ -72,14 +72,14 @@ ContactService.deleteContact = async (slug, id) => {
  }
 
  //----- MODIFICAR -----// MODIFICAR AGENDA
- ContactService.editContact = async (slug, id, formdata) => {
+ ContactService.editContact = async (slug, id, formData) => {
     try {
-        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}}/contacts/${id}` , {
+        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}` , {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formdata)
+            body: JSON.stringify(formData)
         } )
          return ContactService.getAgenda(slug)
      } catch (error) {

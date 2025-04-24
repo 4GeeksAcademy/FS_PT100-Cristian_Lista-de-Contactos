@@ -2,8 +2,11 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import ContactServices from "../services/ContactService"
 import { Link } from "react-router-dom"
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const AddContact = () => {
+
+    const { store, dispatch } = useGlobalReducer()
 
     const [data, setData] = useState({
         name: "",
@@ -23,15 +26,16 @@ export const AddContact = () => {
     }
 
     const handleSubmit = async e => {
-         try {
-             e.preventDefault()
-             const resp = await ContactServices.createContact(data)
-             console.log(resp)
-             navigate('/')
-         } catch (error) {
-             console.log(error)
-         }
-     }
+        try {
+            e.preventDefault()
+            const agenda = await ContactServices.createContact(data)
+            console.log(agenda)
+            dispatch({ type: "getUserAgenda", payload: agenda });
+            navigate('/')
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
 
@@ -39,19 +43,19 @@ export const AddContact = () => {
             <h1>Add a new contact</h1>
             <form className="form-control" onSubmit={handleSubmit}>
                 <div className="col-12">
-                    <label htmlFor="formGroupExampleInput" className="form-label d-flex m-1">Full name</label>
+                    <label htmlFor="formGroupExampleInput" className="form-label d-flex m-1 fa-solid fa-user">Full name</label>
                     <input type="text" className="form-control" placeholder="name" name="name" value={data.name} onChange={handleChange} />
                 </div>
                 <div className="col-12">
-                    <label htmlFor="formGroupExampleInput2" className="form-label d-flex m-1">Phone</label>
+                    <label htmlFor="formGroupExampleInput2" className="form-label d-flex m-1 fa-solid fa-phone-flip">Phone</label>
                     <input type="text" className="form-control" placeholder="phone" name="phone" value={data.phone} onChange={handleChange} />
                 </div>
                 <div className="col-12">
-                    <label htmlFor="inputEmail4" className="form-label d-flex m-1">Email</label>
+                    <label htmlFor="inputEmail4" className="form-label d-flex m-1 fa-solid fa-envelope">Email</label>
                     <input type="text" className="form-control" placeholder="email" name="email" value={data.email} onChange={handleChange} />
                 </div>
                 <div className="col-12">
-                    <label htmlFor="inputAddress" className="form-label d-flex m-1">Address</label>
+                    <label htmlFor="inputAddress" className="form-label d-flex m-1 fa-solid fa-location-dot">Address</label>
                     <input type="text" className="form-control" placeholder="address" name="address" value={data.address} onChange={handleChange} />
                 </div>
                 <div className="col-12">
