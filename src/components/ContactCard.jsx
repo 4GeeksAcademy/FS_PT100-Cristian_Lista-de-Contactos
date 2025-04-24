@@ -12,7 +12,6 @@ export const ContactCard = (props) => {
             console.log(resp)
         } catch (error) {
             console.log(error);
-
         }
     }
 
@@ -34,8 +33,8 @@ export const ContactCard = (props) => {
                 <p className="fa-solid fa-location-dot">{props.address}</p>
             </div>
             <div className="botones">
-                <button className="btn btn-primary fa-solid fa-pen" onClick={handleEdit}>edit</button>
-                <button className="btn btn-danger fa-solid fa-trash" onClick={handleDelete}>delete</button>
+                <button className="btn btn-primary fa-solid fa-pen ms-5 m-3" onClick={handleEdit}> edit</button>
+                <button className="btn btn-danger fa-solid fa-trash ms-5 m-3" onClick={handleDelete}> delete</button>
             </div>
         </div>
     )

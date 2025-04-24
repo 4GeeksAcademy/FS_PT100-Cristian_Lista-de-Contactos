@@ -8,19 +8,19 @@ export const EditContact = () => {
     const params = useParams()
     const { store, dispatch } = useGlobalReducer()
     const navigate = useNavigate()
-    const [formData, setFormData] = useState(store.agenda.find(el => el.id == params.id))
+    const [formData, setFormData] = useState(store.agenda.find(el=> el.id == params.id))
 
     const handleChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const handleReset = () => {
-        setFormData(store.agenda.find(el => el.id == params.id))
+        setFormData(store.agenda.find(el=> el.id == params.id))
     }
 
     const handleSubmit = async e => {
         try {
-            e.preventDeFault()
+            e.preventDefault()
             const resp = await ContactService.editContact('cristian', params.id, formData)
             console.log(resp);
             navigate('/')

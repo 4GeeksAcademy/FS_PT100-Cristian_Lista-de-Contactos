@@ -15,6 +15,7 @@
         display: flex;
         flex-direction: row;
         width: 60%;
+        margin-top: 1rem;
 }
 
 .datos {
@@ -23,6 +24,10 @@
         width: 60%;
 }
 
-.card-img{
+.card-img {
         width: 25%;
+}
+
+.botones{
+        align-content: center;
 }

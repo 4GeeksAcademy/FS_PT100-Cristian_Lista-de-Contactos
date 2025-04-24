@@ -21,16 +21,12 @@ export const AddContact = () => {
 
     const navigate = useNavigate()
 
-    const handleSave = e => {
-        navigate('/')
-    }
-
     const handleSubmit = async e => {
         try {
             e.preventDefault()
             const agenda = await ContactServices.createContact(data)
             console.log(agenda)
-            dispatch({ type: "getUserAgenda", payload: agenda });
+            dispatch({ type: "addContact", payload: nuevocontacto });
             navigate('/')
         } catch (error) {
             console.log(error)
@@ -59,7 +55,7 @@ export const AddContact = () => {
                     <input type="text" className="form-control" placeholder="address" name="address" value={data.address} onChange={handleChange} />
                 </div>
                 <div className="col-12">
-                    <button onClick={handleSave} type="button" className="btn btn-primary mt-3 col-12">save</button>
+                    <button type="submit" className="btn btn-primary mt-3 col-12">save</button>
                 </div>
                 <div className="col-12">
                     <Link to="/">

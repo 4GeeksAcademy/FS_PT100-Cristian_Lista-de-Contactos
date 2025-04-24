@@ -42,7 +42,7 @@ ContactService.createAgenda = async (slug) => {
 //----- POST -----// CREATE CONTACT
 ContactService.createContact = async (Contact) => {
     try {
-        const resp = await fetch('https://playground.4geeks.com/contact/agendas/cristian/contacts', {
+        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/cristian/contacts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ ContactService.createContact = async (Contact) => {
 //----- DELETE -----// DELETE AGENDA
 ContactService.deleteContact = async (slug, id) => {
     try {
-        await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}` , {
+        await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`, {
              method: 'DELETE',
              headers: {
                  'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ ContactService.deleteContact = async (slug, id) => {
  //----- MODIFICAR -----// MODIFICAR AGENDA
  ContactService.editContact = async (slug, id, formData) => {
     try {
-        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}` , {
+        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
