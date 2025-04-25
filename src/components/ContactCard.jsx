@@ -38,4 +38,4 @@ export const ContactCard = (props) => {
             </div>
         </div>
     )
-}
+} 
