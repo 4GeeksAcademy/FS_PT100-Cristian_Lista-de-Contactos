@@ -25,7 +25,7 @@ ContactService.getAgenda = async (slug) => {
 //----- POST -----// CREATE AGENDA
 ContactService.createAgenda = async (slug) => {
     try {
-        const resp = await fetch('https://playground.4geeks.com/contact/agendas/'+ slug, {
+        const resp = await fetch('https://playground.4geeks.com/contact/agendas/' + slug, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,14 +42,14 @@ ContactService.createAgenda = async (slug) => {
 //----- POST -----// CREATE CONTACT
 ContactService.createContact = async (Contact) => {
     try {
-        const resp = await fetch(`https://playground.4geeks.com/contact/agendas/cristian/contacts`, {
+       await fetch(`https://playground.4geeks.com/contact/agendas/cristian/contacts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(Contact)
         })
-        const data = await resp.json()
+
         return ContactService.getAgenda('cristian')
     } catch (error) {
         console.log(error)
@@ -59,20 +59,19 @@ ContactService.createContact = async (Contact) => {
 //----- DELETE -----// DELETE AGENDA
 ContactService.deleteContact = async (slug, id) => {
     try {
-        await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`, {
-             method: 'DELETE',
-             headers: {
-                 'Content-Type': 'application/json'
-             }
-         })
-         return ContactService.getAgenda('cristian')
-     } catch (error) {
-         console.log(error)
-     }
- }
+        console.log(id);
 
- //----- MODIFICAR -----// MODIFICAR AGENDA
- ContactService.editContact = async (slug, id, formData) => {
+        await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`, {
+            method: 'DELETE'
+        })
+        return ContactService.getAgenda('cristian')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//----- MODIFICAR -----// MODIFICAR AGENDA
+ContactService.editContact = async (slug, id, formData) => {
     try {
         const resp = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}/contacts/${id}`, {
             method: 'PUT',
@@ -80,11 +79,11 @@ ContactService.deleteContact = async (slug, id) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)
-        } )
-         return ContactService.getAgenda(slug)
-     } catch (error) {
-         console.log(error)
-     }
+        })
+        return ContactService.getAgenda(slug)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export default ContactService

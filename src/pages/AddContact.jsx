@@ -24,15 +24,12 @@ export const AddContact = () => {
     const handleSubmit = async e => {
         try {
             e.preventDefault()
-            const agenda = await ContactServices.createContact(data)
-            console.log(agenda)
-            dispatch({ type: "addContact", payload: nuevocontacto });
+          ContactServices.createContact(data).then(data=> dispatch({ type: 'getUserAgenda', payload: data.contacts })) 
             navigate('/')
         } catch (error) {
             console.log(error)
         }
     }
-
     return (
 
         <div className="container-fluid text-center">

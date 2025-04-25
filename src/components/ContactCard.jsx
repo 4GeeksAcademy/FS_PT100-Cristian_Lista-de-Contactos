@@ -1,15 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import ContactServices from "../services/ContactService"
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
 export const ContactCard = (props) => {
 
     const navigate = useNavigate();
+    const { store, dispatch } = useGlobalReducer()
+    console.log(props);
 
     const handleDelete = async () => {
         try {
-            const resp = await ContactServices.deleteContact('cristian', props.cid)
-            console.log(resp)
+
+            const data = await ContactServices.deleteContact('cristian', props.cid);
+            console.log(data)
+            dispatch({ type: 'getUserAgenda', payload: await data.contacts })
+
         } catch (error) {
             console.log(error);
         }
@@ -19,7 +25,6 @@ export const ContactCard = (props) => {
         e.preventDefault()
         navigate('/edit/' + props.cid)
     }
-
     return (
 
         <div className="card">
