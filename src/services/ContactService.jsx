@@ -15,6 +15,10 @@ ContactService.getAllAgendas = async () => {
 ContactService.getAgenda = async (slug) => {
     try {
         const resp = await fetch('https://playground.4geeks.com/contact/agendas/' + slug)
+        if (!resp.ok) {
+            await ContactService.createAgenda(slug);
+            return { message: "Creada nueva agenda" };
+        }
         const data = await resp.json()
         return data
     } catch (error) {
